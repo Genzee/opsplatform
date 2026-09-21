@@ -9,4 +9,4 @@ Help make this project welcoming and useful to people with different backgrounds
 
 Maintainers may edit or remove inappropriate content, close disruptive discussions, or restrict participation. They should explain moderation decisions when doing so would not expose private information.
 
-During private development, report conduct concerns privately to the repository owner through your established contact channel. A public reporting channel will be documented before public launch. Do not post sensitive personal details in an issue.
+Report conduct concerns privately to the repository owner through an established contact channel. If you do not have one, open a minimal issue asking the maintainer to arrange a private contact method; do not include the incident details or personal information in that issue. Security vulnerabilities should use the reporting channel in SECURITY.md.

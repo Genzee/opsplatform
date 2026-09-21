@@ -8,9 +8,9 @@ Do not expose the development process as an unauthenticated remote service. Do n
 
 ## Reporting
 
-During private development, report suspected vulnerabilities directly to the repository owner through your established private contact channel. Do not disclose sensitive reproduction details in public issues or pull requests.
+Use [GitHub private vulnerability reporting](https://github.com/Genzee/opsplatform/security/advisories/new) to report suspected vulnerabilities. Private reporting is enabled. Do not disclose sensitive reproduction details in public issues or pull requests.
 
-Before making the repository public, the maintainer must enable GitHub private vulnerability reporting and verify the reporting link. That reporting channel and a supported-version policy are public-release prerequisites; no response-time commitment is made yet.
+Include the affected commit, a minimal sanitized reproduction, and the expected impact. There are no supported production releases or response-time commitments yet. A supported-version policy will be added before the first production release.
 
 ## Design expectations
 

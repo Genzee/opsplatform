@@ -20,7 +20,7 @@ Use clear imperative commit/PR subjects; Conventional Commit prefixes such as `f
 
 GitHub feature availability can limit server-side protection for a private repository. The maintainer must verify enforcement in repository settings; a written policy alone is not protection. Any unavailable rule should be documented rather than silently claiming it is enforced.
 
-**Bootstrap enforcement status (2026-09-21):** the repository is private. Squash-only merging and automatic deletion of merged branches are enabled. GitHub rejected branch protection with HTTP 403 because this account needs a paid plan or a public repository for that feature. PR/check requirements above are the intended policy and are not yet enforced server-side. Public visibility or a plan upgrade must be decided by the owner before enabling protection.
+**Verified enforcement status (2026-09-21):** the repository is public. Branch protection is enabled on `main`, including for administrators. PRs, successful `Go 1.25.x` and `Go stable` checks from GitHub Actions, up-to-date branches, resolved review conversations, and linear history are required. Force pushes and deletion are disabled. Squash-only merging and automatic deletion of merged branches are enabled. Required approving reviewers remain zero during the single-maintainer bootstrap.
 
 ## Releases
 
