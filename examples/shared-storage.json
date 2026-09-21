@@ -1,0 +1,775 @@
+{
+  "resources": [
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Namespace",
+        "native_id": "ns-prod"
+      },
+      "name": "production",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "nfs/demo",
+        "kind": "nfs.Server",
+        "native_id": "server-storage-01"
+      },
+      "name": "storage-01",
+      "attributes": {
+        "server.address": "192.0.2.30",
+        "fixture.synthetic": true
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-1"
+      },
+      "name": "payment-api",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-1"
+      },
+      "name": "payment-api-rs",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-1"
+      },
+      "name": "payment-api-pod",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-1/app/containerd:runtime-1"
+      },
+      "name": "payment-api-container",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-1"
+      },
+      "name": "worker-1",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-1",
+        "kind": "linux.OS",
+        "native_id": "os-1"
+      },
+      "name": "worker-1-os",
+      "attributes": {
+        "fixture.synthetic": true
+      }
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-1",
+        "kind": "linux.NetworkInterface",
+        "native_id": "boot-1/netns/if2"
+      },
+      "name": "eth0",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Route",
+        "native_id": "boot-1/netns/default"
+      },
+      "name": "default",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Mount",
+        "native_id": "boot-1/mntns/mount-42"
+      },
+      "name": "/srv/payment-api",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-1/fs-nfs"
+      },
+      "name": "nfs-data",
+      "attributes": {
+        "filesystem.type": "nfs4"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-2"
+      },
+      "name": "report-api",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-2"
+      },
+      "name": "report-api-rs",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-2"
+      },
+      "name": "report-api-pod",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-2/app/containerd:runtime-2"
+      },
+      "name": "report-api-container",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-2"
+      },
+      "name": "worker-2",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-2",
+        "kind": "linux.OS",
+        "native_id": "os-2"
+      },
+      "name": "worker-2-os",
+      "attributes": {
+        "fixture.synthetic": true
+      }
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-2",
+        "kind": "linux.NetworkInterface",
+        "native_id": "boot-2/netns/if2"
+      },
+      "name": "eth0",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Route",
+        "native_id": "boot-2/netns/default"
+      },
+      "name": "default",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Mount",
+        "native_id": "boot-2/mntns/mount-42"
+      },
+      "name": "/srv/report-api",
+      "attributes": {}
+    },
+    {
+      "ref": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-2/fs-nfs"
+      },
+      "name": "nfs-data",
+      "attributes": {
+        "filesystem.type": "nfs4"
+      }
+    },
+    {
+      "ref": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-other"
+      },
+      "name": "unrelated-api",
+      "attributes": {
+        "k8s.namespace.name": "production"
+      }
+    }
+  ],
+  "relationships": [
+    {
+      "provider": "fixture/kubernetes",
+      "key": "ns:CONTAINS:d1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Namespace",
+        "native_id": "ns-prod"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-1"
+      },
+      "type": "CONTAINS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.namespace"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "d1:OWNS:rs1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-1"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-1"
+      },
+      "type": "OWNS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.ownerReferences[].uid"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "rs1:OWNS:p1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-1"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-1"
+      },
+      "type": "OWNS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.ownerReferences[].uid"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "p1:CONTAINS:c1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-1"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-1/app/containerd:runtime-1"
+      },
+      "type": "CONTAINS",
+      "provenance": {
+        "method": "observed",
+        "source": "status.containerStatuses[].containerID"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "p1:RUNS_ON:n1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-1"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-1"
+      },
+      "type": "RUNS_ON",
+      "provenance": {
+        "method": "observed",
+        "source": "spec.nodeName (fixture UID resolution)"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "c1:RUNS_ON:n1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-1/app/containerd:runtime-1"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-1"
+      },
+      "type": "RUNS_ON",
+      "provenance": {
+        "method": "observed",
+        "source": "Pod placement (derived fixture)"
+      }
+    },
+    {
+      "provider": "fixture/resolver",
+      "key": "n1:BACKED_BY:o1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-1"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.OS",
+        "native_id": "os-1"
+      },
+      "type": "BACKED_BY",
+      "provenance": {
+        "method": "deterministic",
+        "source": "Node machineID and Linux machine-id",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "linux/worker-1",
+      "key": "o1:HAS_INTERFACE:nic1",
+      "source": {
+        "provider": "linux/worker-1",
+        "kind": "linux.OS",
+        "native_id": "os-1"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.NetworkInterface",
+        "native_id": "boot-1/netns/if2"
+      },
+      "type": "HAS_INTERFACE",
+      "provenance": {
+        "method": "observed",
+        "source": "netlink link dump"
+      }
+    },
+    {
+      "provider": "linux/worker-1",
+      "key": "o1:HAS_ROUTE:route1",
+      "source": {
+        "provider": "linux/worker-1",
+        "kind": "linux.OS",
+        "native_id": "os-1"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Route",
+        "native_id": "boot-1/netns/default"
+      },
+      "type": "HAS_ROUTE",
+      "provenance": {
+        "method": "observed",
+        "source": "netlink route dump"
+      }
+    },
+    {
+      "provider": "linux/worker-1",
+      "key": "o1:HAS_MOUNT:m1",
+      "source": {
+        "provider": "linux/worker-1",
+        "kind": "linux.OS",
+        "native_id": "os-1"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Mount",
+        "native_id": "boot-1/mntns/mount-42"
+      },
+      "type": "HAS_MOUNT",
+      "provenance": {
+        "method": "observed",
+        "source": "/proc/1/mountinfo"
+      }
+    },
+    {
+      "provider": "fixture/resolver",
+      "key": "c1:MOUNTS:m1",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-1/app/containerd:runtime-1"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Mount",
+        "native_id": "boot-1/mntns/mount-42"
+      },
+      "type": "MOUNTS",
+      "provenance": {
+        "method": "deterministic",
+        "source": "synthetic container mount namespace mapping",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "linux/worker-1",
+      "key": "m1:BACKED_BY:fs1",
+      "source": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Mount",
+        "native_id": "boot-1/mntns/mount-42"
+      },
+      "target": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-1/fs-nfs"
+      },
+      "type": "BACKED_BY",
+      "provenance": {
+        "method": "observed",
+        "source": "mountinfo filesystem identity"
+      }
+    },
+    {
+      "provider": "fixture/storage",
+      "key": "fs1:USES:storage",
+      "source": {
+        "provider": "linux/worker-1",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-1/fs-nfs"
+      },
+      "target": {
+        "provider": "nfs/demo",
+        "kind": "nfs.Server",
+        "native_id": "server-storage-01"
+      },
+      "type": "USES",
+      "provenance": {
+        "method": "deterministic",
+        "source": "synthetic NFS source mapping",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "ns:CONTAINS:d2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Namespace",
+        "native_id": "ns-prod"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-2"
+      },
+      "type": "CONTAINS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.namespace"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "d2:OWNS:rs2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-2"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-2"
+      },
+      "type": "OWNS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.ownerReferences[].uid"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "rs2:OWNS:p2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.ReplicaSet",
+        "native_id": "rs-2"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-2"
+      },
+      "type": "OWNS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.ownerReferences[].uid"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "p2:CONTAINS:c2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-2"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-2/app/containerd:runtime-2"
+      },
+      "type": "CONTAINS",
+      "provenance": {
+        "method": "observed",
+        "source": "status.containerStatuses[].containerID"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "p2:RUNS_ON:n2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Pod",
+        "native_id": "pod-2"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-2"
+      },
+      "type": "RUNS_ON",
+      "provenance": {
+        "method": "observed",
+        "source": "spec.nodeName (fixture UID resolution)"
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "c2:RUNS_ON:n2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-2/app/containerd:runtime-2"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-2"
+      },
+      "type": "RUNS_ON",
+      "provenance": {
+        "method": "observed",
+        "source": "Pod placement (derived fixture)"
+      }
+    },
+    {
+      "provider": "fixture/resolver",
+      "key": "n2:BACKED_BY:o2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Node",
+        "native_id": "node-2"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.OS",
+        "native_id": "os-2"
+      },
+      "type": "BACKED_BY",
+      "provenance": {
+        "method": "deterministic",
+        "source": "Node machineID and Linux machine-id",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "linux/worker-2",
+      "key": "o2:HAS_INTERFACE:nic2",
+      "source": {
+        "provider": "linux/worker-2",
+        "kind": "linux.OS",
+        "native_id": "os-2"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.NetworkInterface",
+        "native_id": "boot-2/netns/if2"
+      },
+      "type": "HAS_INTERFACE",
+      "provenance": {
+        "method": "observed",
+        "source": "netlink link dump"
+      }
+    },
+    {
+      "provider": "linux/worker-2",
+      "key": "o2:HAS_ROUTE:route2",
+      "source": {
+        "provider": "linux/worker-2",
+        "kind": "linux.OS",
+        "native_id": "os-2"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Route",
+        "native_id": "boot-2/netns/default"
+      },
+      "type": "HAS_ROUTE",
+      "provenance": {
+        "method": "observed",
+        "source": "netlink route dump"
+      }
+    },
+    {
+      "provider": "linux/worker-2",
+      "key": "o2:HAS_MOUNT:m2",
+      "source": {
+        "provider": "linux/worker-2",
+        "kind": "linux.OS",
+        "native_id": "os-2"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Mount",
+        "native_id": "boot-2/mntns/mount-42"
+      },
+      "type": "HAS_MOUNT",
+      "provenance": {
+        "method": "observed",
+        "source": "/proc/1/mountinfo"
+      }
+    },
+    {
+      "provider": "fixture/resolver",
+      "key": "c2:MOUNTS:m2",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Container",
+        "native_id": "pod-2/app/containerd:runtime-2"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Mount",
+        "native_id": "boot-2/mntns/mount-42"
+      },
+      "type": "MOUNTS",
+      "provenance": {
+        "method": "deterministic",
+        "source": "synthetic container mount namespace mapping",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "linux/worker-2",
+      "key": "m2:BACKED_BY:fs2",
+      "source": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Mount",
+        "native_id": "boot-2/mntns/mount-42"
+      },
+      "target": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-2/fs-nfs"
+      },
+      "type": "BACKED_BY",
+      "provenance": {
+        "method": "observed",
+        "source": "mountinfo filesystem identity"
+      }
+    },
+    {
+      "provider": "fixture/storage",
+      "key": "fs2:USES:storage",
+      "source": {
+        "provider": "linux/worker-2",
+        "kind": "linux.Filesystem",
+        "native_id": "boot-2/fs-nfs"
+      },
+      "target": {
+        "provider": "nfs/demo",
+        "kind": "nfs.Server",
+        "native_id": "server-storage-01"
+      },
+      "type": "USES",
+      "provenance": {
+        "method": "deterministic",
+        "source": "synthetic NFS source mapping",
+        "rule": "fixture/exact-match-v1",
+        "evidence": [
+          "synthetic identifiers only; matching is predeclared, not resolved by the runtime"
+        ]
+      }
+    },
+    {
+      "provider": "fixture/kubernetes",
+      "key": "ns:CONTAINS:unrelated",
+      "source": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Namespace",
+        "native_id": "ns-prod"
+      },
+      "target": {
+        "provider": "kubernetes/demo",
+        "kind": "kubernetes.Deployment",
+        "native_id": "deploy-other"
+      },
+      "type": "CONTAINS",
+      "provenance": {
+        "method": "observed",
+        "source": "metadata.namespace"
+      }
+    }
+  ]
+}

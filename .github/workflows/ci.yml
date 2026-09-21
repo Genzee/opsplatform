@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Go ${{ matrix.go }}
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        go: ['1.25.x', stable]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
+        with:
+          go-version: ${{ matrix.go }}
+          cache: false
+      - name: Check formatting, race tests, and vet
+        run: make check
+      - name: Build commands
+        run: make build
+      - name: Smoke-test commands
+        run: |
+          ./bin/infra -fixture examples/shared-storage.json trace payment-api > /tmp/trace.json
+          ./bin/infra -fixture examples/shared-storage.json impact storage-01 > /tmp/impact.json
+          ./bin/infra -fixture examples/shared-storage.json path payment-api storage-01 > /tmp/path.json
+          ./bin/core -fixture examples/shared-storage.json < examples/tools.jsonl > /tmp/tools.jsonl
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          impact = json.loads(Path('/tmp/impact.json').read_text())
+          workloads = sorted(r['name'] for r in impact['resources'] if r['ref']['kind'] == 'kubernetes.Deployment')
+          assert workloads == ['payment-api', 'report-api'], workloads
+          assert impact['semantics'] == 'potential-impact-not-outage'
+          path = json.loads(Path('/tmp/path.json').read_text())
+          assert path['found'] and len(path['path']) == 7
+          responses = [json.loads(line) for line in Path('/tmp/tools.jsonl').read_text().splitlines()]
+          assert len(responses) == 3 and all('error' not in r for r in responses)
+          assert len(responses[0]['result']) == 8
+          PY

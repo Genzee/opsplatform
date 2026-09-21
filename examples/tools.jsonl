@@ -1,0 +1,3 @@
+{"id": "list", "method": "list_tools"}
+{"id": "find", "method": "call_tool", "name": "find_resources", "arguments": {"kind": "kubernetes.Deployment"}}
+{"id": "capabilities", "method": "call_tool", "name": "get_capabilities", "arguments": {}}

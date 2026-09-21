@@ -1,0 +1,21 @@
+name: Bug report
+description: Report a reproducible problem using sanitized data.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Reproduction steps
+      description: Include a minimal synthetic fixture if useful. Do not include credentials or private inventory.
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Commit, Go version, OS, and command used.

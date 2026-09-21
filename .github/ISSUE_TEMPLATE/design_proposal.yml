@@ -1,0 +1,20 @@
+name: Design proposal
+description: Discuss a problem and trade-offs before implementing a subsystem.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem and concrete scenario
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed approach and alternatives
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Validation and scope
+      description: Explain how to test the proposal and what remains out of scope.
