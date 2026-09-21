@@ -7,6 +7,7 @@ The root [README](../README.md) is authoritative for implemented behavior and li
 - [Product direction](architecture/product-direction.md): people and external agents use common operations; provisioning remains a future core objective.
 - [Tool adapter](architecture/tool-adapter.md): direct function dispatch and the local JSON-lines protocol. No OpenAPI or MCP requirement.
 - [Branch and release policy](development.md): contributor workflow, CI, merges, and version tags.
+- [Runtime, build, and deployment overview](runtime-overview.md): a Korean walkthrough of Go binaries, today's local processes, and the future deployment model.
 
 ## Design proposals and history
 
