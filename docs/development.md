@@ -20,6 +20,8 @@ Use clear imperative commit/PR subjects; Conventional Commit prefixes such as `f
 
 GitHub feature availability can limit server-side protection for a private repository. The maintainer must verify enforcement in repository settings; a written policy alone is not protection. Any unavailable rule should be documented rather than silently claiming it is enforced.
 
+**Bootstrap enforcement status (2026-09-21):** the repository is private. Squash-only merging and automatic deletion of merged branches are enabled. GitHub rejected branch protection with HTTP 403 because this account needs a paid plan or a public repository for that feature. PR/check requirements above are the intended policy and are not yet enforced server-side. Public visibility or a plan upgrade must be decided by the owner before enabling protection.
+
 ## Releases
 
 - Tag a tested commit on `main` with an annotated semantic version, such as `v0.1.0-alpha.1` or `v0.1.0`.
